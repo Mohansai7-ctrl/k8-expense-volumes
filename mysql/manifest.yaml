@@ -30,7 +30,6 @@ metadata:
   name: mysql
   namespace: expense
 spec:
-  
   selector:
     app: mysql
     tier: db
