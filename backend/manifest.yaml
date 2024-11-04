@@ -25,7 +25,7 @@ spec:
       app: backend
       tier: app
       project: expense
-  templates:
+  template:
     metadata:
       labels:
         app: backend
@@ -46,7 +46,7 @@ metadata:
   name: backend-svc
   namespace: expense
 spec:
-  type: LoadBalancer
+  
   selector:
     app: backend
     tier: app

@@ -14,7 +14,7 @@ spec:
       app: frontend
       tier: web
       project: expense
-  templates:
+  template:
     metadata:
       labels:
         app: frontend

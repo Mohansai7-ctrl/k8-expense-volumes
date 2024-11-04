@@ -30,7 +30,7 @@ metadata:
   name: mysql
   namespace: expense
 spec:
-  type: LoadBalancer
+  
   selector:
     app: mysql
     tier: db
@@ -54,7 +54,8 @@ spec:
       tier: db
       project: expense
   serviceName: "mysql-headless"
-  templates:
+  replicas: 2
+  template:
     metadata:
       labels:
         app: mysql
