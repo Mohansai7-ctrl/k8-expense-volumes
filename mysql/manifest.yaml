@@ -1,3 +1,79 @@
-kind: Service
+# as mysql replicas should be created with statefulSet, it has below 4 components:
+# 1)Headless Service
+# 2)Normal service for the pods
+# 3)pv and pvc
+# 4)in main statefulSet under spec: , it contains containers and volumeMounts and instead of volumes it has PVC Section as volumeClaimTemplates
+
+# 1)Headless Service
 apiVersion: v1
+kind: Service
 metadata:
+  name: mysql-Headless
+  namespace: expense
+spec:
+  clusterIP: None
+  selector:
+    app: mysql
+    tier: db
+    project: expense
+  ports:
+  - protocol: TCP
+    port: 3306
+    targetPort: 3306
+
+---
+# 2)Normal service for the pods
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql
+  namespace: expense
+spec:
+  type: LoadBalancer
+  selector:
+    app: mysql
+    tier: db
+    project: expense
+  ports:
+  - protocol: TCP
+    port: 3306
+    targetPort: 3306
+
+---
+#3)pv and pvc:
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: mysql
+  namespace: expense
+spec:
+  selector:
+    matchLabels:
+      app: mysql
+      tier: db
+      project: expense
+  serviceName: "mysql-headless"
+  templates:
+    metadata:
+      labels:
+        app: mysql
+        tier: db
+        project: expense
+    spec:
+      containers:
+      - name: mysql
+        image: mohansai7/mysql:v1
+        volumeMounts:
+        - name: mysql
+          mountPath: /var/lib/mysql
+volumeClaimTemplates:
+- metadata:
+    name: mysql
+  spec:
+    accessModes:
+      - ReadWriteOnce
+    storageClassName: "expense-ebs"
+    resources:
+      requests:
+        storage: 1Gi
