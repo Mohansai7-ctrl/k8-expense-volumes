@@ -67,7 +67,7 @@ spec:
         volumeMounts:
         - name: mysql
           mountPath: /var/lib/mysql
-  volumeClaimTemplates:
+  volumeClaimTemplates:  #dynamic volume provisioning
   - metadata:
       name: mysql
     spec:
