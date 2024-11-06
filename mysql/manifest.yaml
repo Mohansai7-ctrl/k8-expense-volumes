@@ -1,3 +1,9 @@
+
+#nodeSelector to be used must because volume also should be created within the zone where cluster worker nodes are there.
+
+
+
+
 # as mysql replicas should be created with statefulSet, it has below 4 components:
 # 1)Headless Service
 # 2)Normal service for the pods
@@ -61,6 +67,8 @@ spec:
         tier: db
         project: expense
     spec:
+      nodeSelector:
+        topology.kubernetes.io/zone: us-east-1   #nodeSelector to be used must because volume also should be created within the zone where cluster worker nodes are there.
       containers:
       - name: mysql
         image: mohansai7/mysql:v1

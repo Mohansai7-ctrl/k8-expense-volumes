@@ -7,6 +7,10 @@
 # sudo ln -s /opt/kubectx/kubectx /usr/local/bin/kubectx
 # sudo ln -s /opt/kubectx/kubens /usr/local/bin/kubens
 
+# k9s install:
+# curl -sS https://webinstall.dev/k9s | bash
+
+
 
 
 apiVersion: storage.k8s.io/v1
