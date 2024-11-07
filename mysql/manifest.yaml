@@ -33,7 +33,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: mysql
+  name: mysql   #name should be mysql only becuase backend tries to connect to mysql with service name as mysql
   namespace: expense
 spec:
   selector:
