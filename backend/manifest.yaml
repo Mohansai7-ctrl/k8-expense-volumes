@@ -43,7 +43,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: backend-svc
+  name: backend  #This should be backend only, because frontend appliation/pods will try to connect to backend with name as backend
   namespace: expense
 spec:
   
