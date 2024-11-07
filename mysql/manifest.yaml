@@ -67,8 +67,8 @@ spec:
         tier: db
         project: expense
     spec:
-      nodeSelector:
-        topology.kubernetes.io/zone: us-east-1   #nodeSelector to be used must because volume also should be created within the zone where cluster worker nodes are there.
+      nodeSelector: 
+        topology.kubernetes.io/zone: us-east-1d  #nodeSelector to be used must because volume also should be created within the zone where cluster worker nodes are there.
       containers:
       - name: mysql
         image: mohansai7/mysql:v1
