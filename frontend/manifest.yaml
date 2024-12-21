@@ -31,7 +31,7 @@ metadata:
   name: frontend-svc
   namespace: expense
 spec:
-  type: LoadBalancer
+  type: LoadBalancer  #by default it will create classic load balancer, if ingress is introduced then it will create Application Load Balancer.
   selector:
     app: frontend
     tier: web
